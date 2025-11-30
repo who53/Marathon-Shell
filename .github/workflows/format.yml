@@ -33,6 +33,8 @@ jobs:
           else
             echo "needs_formatting=false" >> $GITHUB_ENV
           fi
+          git add -A -v
+          git diff --cached
 
       - name: Post comment on PR if needed
         if: ${{ github.event_name == 'pull_request' && env.needs_formatting == 'true' }}
